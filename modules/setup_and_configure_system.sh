@@ -23,3 +23,6 @@ echo "${INSTALL_HOSTNAME}" > /etc/hostname
 echo "127.0.0.1 localhost" > /etc/hosts
 echo "::1   localhost" >> /etc/hosts
 echo "127.0.1.1 ${INSTALL_HOSTNAME}.localdomain ${INSTALL_HOSTNAME}">> /etc/hosts
+
+# Leave new system root
+exit

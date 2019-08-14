@@ -50,4 +50,4 @@ export INSTALL_ROOT_PASSWORD=$root_password
 ./modules/system_clock.sh
 ./modules/partitions.sh
 ./modules/setup_and_configure_system.sh
-
+./modules/boot_loader.sh
