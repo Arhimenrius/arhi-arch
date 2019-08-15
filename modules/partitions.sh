@@ -10,7 +10,7 @@ device=$(dialog --stdout --menu "Select installation disk" 0 0 0 ${devicelist}) 
 
 sgdisk --zap-all $device
 
-fdisk $device --wipe never <<EOF
+fdisk $device --wipe never << EOF
 o # clear the in memory partition table
 g # GPT label
 # Partition 1 creation start

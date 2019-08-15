@@ -9,37 +9,34 @@ else
 fi
 
 # Initialize all needed variables
-read -p "Provide hostname: " hostname
+echo -n "Provide hostname: "
+read hostname
 : "${hostname:?"Missing hostname"}"
  
-read -p "Provide user name: " user_name
+echo -n "Provide user name: "
+read user_name
 : "${user_name:?"Missing user name"}"
  
- 
-read -p "Provide user password: " user_password
+echo -n "Provide user password: "
+read -s user_password
 : "${user_password:?"Missing user password"}"
- 
-read -p "Repeat user password: " user_repeat_password
+
+echo -n "Repeat user password: "
+read -s user_repeat_password
 : "${user_repeat_password:?"Missing user repeat password"}"
  
 [[ "$user_password" == "$user_repeat_password" ]] || ( echo "User passwords did not match"; exit 1; )
  
-read -p "Root password: " root_password
+echo -n "Root password: "
+read -s root_password
 : "${root_password:?"Missing root password"}"
  
-read -p "Repeat root password: " root_repeat_password
+echo -n "Repeat root password: "
+read -s root_repeat_password
 : "${root_repeat_password:?"Missing root repeat password"}"
  
 [[ "$root_password" == "$root_repeat_password" ]] || ( echo "User passwords did not match"; exit 1; )
 
-echo "Install fun pack? (Nvidia drivers, Nvidia Optimus, Steam)"
-select yn in "Yes" "No"; do
-    case $yn in
-        Yes ) export INSTALL_FUN_PACK=true; break;;
-        No ) export INSTALL_FUN_PACK=false; break;;
-    esac
-done
- 
 # Export all install variables
 
 export INSTALL_HOSTNAME=$hostname
@@ -51,3 +48,7 @@ export INSTALL_ROOT_PASSWORD=$root_password
 ./modules/partitions.sh
 ./modules/setup_and_configure_system.sh
 ./modules/boot_loader.sh
+./modules/install_software.sh
+./modules/setup_users.sh
+
+reboot
